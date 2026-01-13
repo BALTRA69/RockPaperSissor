@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Rock Paper Scissors</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #a855f7, #ec4899, #ef4444);
+      }
+      .container {
+        background: white;
+        padding: 30px;
+        border-radius: 20px;
+        width: 400px;
+        text-align: center;
+      }
+      button {
+        padding: 15px;
+        border: none;
+        border-radius: 15px;
+        font-weight: bold;
+        color: white;
+        cursor: pointer;
+        margin: 5px;
+      }
+      .scissors {
+        background: #3b82f6;
+      }
+      .paper {
+        background: #22c55e;
+      }
+      .rock {
+        background: #f97316;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Rock Paper Scissors</h1>
+
+      <p>
+        You: <span id="player">0</span> | Draws: <span id="draw">0</span> |
+        Computer: <span id="computer">0</span>
+      </p>
+
+      <button class="scissors" onclick="play(0)">Scissors</button>
+      <button class="paper" onclick="play(1)">Paper</button>
+      <button class="rock" onclick="play(2)">Rock</button>
+
+      <h2 id="result"></h2>
+    </div>
+
+    <script>
+      const options = ["Scissors", "Paper", "Rock"];
+      const matrix = [
+        ["Draw", "Computer Wins", "You Win"],
+        ["You Win", "Draw", "Computer Wins"],
+        ["Computer Wins", "You Win", "Draw"],
+      ];
+
+      let p = 0,
+        c = 0,
+        d = 0;
+
+      function play(i) {
+        const comp = Math.floor(Math.random() * 3);
+        const res = matrix[comp][i];
+        document.getElementById(
+          "result"
+        ).innerText = `You: ${options[i]} | Computer: ${options[comp]} → ${res}`;
+
+        if (res === "You Win") p++;
+        else if (res === "Computer Wins") c++;
+        else d++;
+
+        player.innerText = p;
+        computer.innerText = c;
+        draw.innerText = d;
+      }
+    </script>
+  </body>
+</html>
